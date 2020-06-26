@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Input, InputNumber } from "antd";
 import api from "../../services/api";
-
 import { Container } from "./styles";
+import useQuerySearch from "../../store/querySearch";
 
 function SearchArticles() {
   const [articles, setArticles] = useState({});
-  const [query, setQuery] = useState({
-    querySearch: "",
-    page: 1,
-    pageSize: 10,
-  });
+  const { query, setQuery } = useQuerySearch("");
 
   const { Search } = Input;
 
   async function loadArticles(termSearch) {
-    setQuery((query.querySearch = termSearch));
-    const querySearch = query.querySearch;
-    const page = query.page;
-    const pageSize = query.pageSize;
+    setQuery(termSearch);
+    const querySearch = query;
+    const page = 1;
+    const pageSize = 10;
     const apiKey = "EvLx9o8M4pI32OtkVX0Yri6HNZbnCJTA";
 
     await api
