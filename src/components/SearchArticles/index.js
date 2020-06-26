@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Input, InputNumber } from "antd";
+import React, { useState } from "react";
+import { Input } from "antd";
 import api from "../../services/api";
 import { Container } from "./styles";
-import useQuerySearch from "../../store/querySearch";
+import { useQuerySearch } from "../../store/querySearch";
+import { useResultSearch } from "../../store/resultSearch";
 
 function SearchArticles() {
-  const [articles, setArticles] = useState({});
+  const { resultSearch, setResultSearch } = useResultSearch("");
   const { query, setQuery } = useQuerySearch("");
 
   const { Search } = Input;
@@ -19,15 +20,15 @@ function SearchArticles() {
 
     await api
       .get(
-        `${querySearch}?page=${page}&pageSize=${pageSize}&urls=true&apiKey=${apiKey}`
+        `${termSearch}?page=${page}&pageSize=${pageSize}&urls=true&apiKey=${apiKey}`
       )
-      .then((response) => setArticles(response.data))
+      .then((response) => setResultSearch(response.data))
       .catch((e) => {
         console.log(e);
       });
   }
+  console.log(resultSearch);
 
-  console.log(articles);
   return (
     <Container>
       <Search
