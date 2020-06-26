@@ -2,5 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  background: #f8f8f8;
+  width: 100vw;
+  padding: 25px;
 `;
