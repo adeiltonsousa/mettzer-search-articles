@@ -9,7 +9,7 @@ A aplicação foi desenvolvida com React.
 
 ```bash
 # Clone o repositório do projeto
-$ git clone https://github.com/adeiltonsousa/challenge-accepted
+$ git clone https://github.com/adeiltonsousa/mettzer-search-articles
 
 
 
