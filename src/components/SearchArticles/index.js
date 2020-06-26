@@ -21,7 +21,7 @@ function SearchArticles() {
       .get(
         `${termSearch}?page=${page}&pageSize=${PageSize}&urls=true&apiKey=${apiKey}`
       )
-      .then((response) => setResultSearch(response.data))
+      .then((response) => setResultSearch(response.data.data))
       .catch((e) => {
         console.log(e);
       });
@@ -44,7 +44,7 @@ function SearchArticles() {
       />
       <Search
         placeholder="input search text"
-        defaultValue="Brasil colonia"
+        defaultValue="developer soft skills"
         onSearch={(value) => loadArticles(value)}
         enterButton
       />
