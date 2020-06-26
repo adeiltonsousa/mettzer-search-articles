@@ -6,8 +6,8 @@ import { useQuerySearch } from "../../store/querySearch";
 import { useResultSearch } from "../../store/resultSearch";
 
 function SearchArticles() {
-  const { resultSearch, setResultSearch } = useResultSearch("");
-  const { query, setQuery } = useQuerySearch("");
+  const { setResultSearch } = useResultSearch("");
+  const { setQuery } = useQuerySearch("");
   const [PageSize, setPageSize] = useState(10);
   const [page] = useState(1);
 
@@ -15,6 +15,7 @@ function SearchArticles() {
 
   async function loadArticles(termSearch) {
     setQuery(termSearch);
+    //Não adicionei a key no ENV pra facilitar o Deploy no CR
     const apiKey = "EvLx9o8M4pI32OtkVX0Yri6HNZbnCJTA";
 
     await api
@@ -30,9 +31,6 @@ function SearchArticles() {
   function onChangeSizePage(value) {
     setPageSize(value);
   }
-
-  console.log(resultSearch);
-  console.log(query);
 
   return (
     <Container>

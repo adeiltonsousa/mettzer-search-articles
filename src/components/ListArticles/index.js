@@ -16,8 +16,6 @@ function ListArticles() {
     { title: "Add Favoritos", dataIndex: "favorite", key: "favorite" },
   ];
 
-  function addFavoritos() {}
-
   resultSearch.map((itemArticle) =>
     data.push({
       key: itemArticle.id,
