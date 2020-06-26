@@ -9,7 +9,7 @@ function SearchArticles() {
   const { resultSearch, setResultSearch } = useResultSearch("");
   const { query, setQuery } = useQuerySearch("");
   const [PageSize, setPageSize] = useState(10);
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
 
   const { Search } = Input;
 
@@ -42,7 +42,8 @@ function SearchArticles() {
         onSearch={(value) => loadArticles(value)}
         enterButton
       />
-      Resultados por Página:
+      <span>Resultados por Página:</span>
+
       <InputNumber
         min={10}
         max={100}

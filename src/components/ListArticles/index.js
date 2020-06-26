@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useResultSearch } from "../../store/resultSearch";
 import { Table, Button, Tooltip } from "antd";
 import { Container } from "./styles";
 import { FileDoneOutlined } from "@ant-design/icons";
 
 function ListArticles() {
-  const { resultSearch, setResultSearch } = useResultSearch([]);
+  const { resultSearch } = useResultSearch([]);
   let data = [];
 
   const columns = [
@@ -18,23 +18,21 @@ function ListArticles() {
 
   function addFavoritos() {}
 
-  {
-    resultSearch.map((itemArticle) =>
-      data.push({
-        key: itemArticle.id,
-        authors: itemArticle?.authors.toString(),
-        type: itemArticle?.types.toString() || "- - -",
-        title: itemArticle?.title,
-        description: itemArticle?.description,
-        fulltextUrls: <a href={itemArticle.fulltextUrls[0]}>Baixar</a>,
-        favorite: (
-          <Tooltip title="Adicinar a favoritos">
-            <Button type="primary" shape="circle" icon={<FileDoneOutlined />} />
-          </Tooltip>
-        ),
-      })
-    );
-  }
+  resultSearch.map((itemArticle) =>
+    data.push({
+      key: itemArticle.id,
+      authors: itemArticle?.authors.toString(),
+      type: itemArticle?.types.toString() || "- - -",
+      title: itemArticle?.title,
+      description: itemArticle?.description,
+      fulltextUrls: <a href={itemArticle.fulltextUrls[0]}>Baixar</a>,
+      favorite: (
+        <Tooltip title="Adicinar a favoritos">
+          <Button type="primary" shape="circle" icon={<FileDoneOutlined />} />
+        </Tooltip>
+      ),
+    })
+  );
 
   return (
     <Container>
