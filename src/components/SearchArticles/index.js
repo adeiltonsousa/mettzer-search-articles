@@ -1,37 +1,45 @@
 import React, { useState, useEffect } from "react";
-
+import { Input, InputNumber } from "antd";
 import api from "../../services/api";
 
 import { Container } from "./styles";
 
 function SearchArticles() {
   const [articles, setArticles] = useState({});
-  const [query, setQuery] = useState({});
+  const [query, setQuery] = useState({
+    querySearch: "",
+    page: 1,
+    pageSize: 10,
+  });
 
-  useEffect(() => {
-    setQuery({
-      query: "Education",
-      page: 10,
-      pageSize: 0,
-      scrollId: "",
-    });
-  }, []);
+  const { Search } = Input;
 
-  async function loadArticles() {
-    const response = await api
+  async function loadArticles(termSearch) {
+    setQuery((query.querySearch = termSearch));
+    const querySearch = query.querySearch;
+    const page = query.page;
+    const pageSize = query.pageSize;
+    const apiKey = "EvLx9o8M4pI32OtkVX0Yri6HNZbnCJTA";
+
+    await api
       .get(
-        `Education?page=2&pageSize=10&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey=EvLx9o8M4pI32OtkVX0Yri6HNZbnCJTA`
+        `${querySearch}?page=${page}&pageSize=${pageSize}&urls=true&apiKey=${apiKey}`
       )
-      .then((response) => console.log(response))
+      .then((response) => setArticles(response.data))
       .catch((e) => {
         console.log(e);
       });
-    console.log(articles);
   }
 
+  console.log(articles);
   return (
     <Container>
-      <button onClick={loadArticles}> Busca</button>
+      <Search
+        placeholder="input search text"
+        defaultValue="Brasil colonia"
+        onSearch={(value) => loadArticles(value)}
+        enterButton
+      />
     </Container>
   );
 }
