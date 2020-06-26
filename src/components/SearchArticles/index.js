@@ -36,17 +36,18 @@ function SearchArticles() {
 
   return (
     <Container>
+      <Search
+        placeholder="busca...."
+        defaultValue="developer soft skills"
+        onSearch={(value) => loadArticles(value)}
+        enterButton
+      />
+      Resultados por Página:
       <InputNumber
         min={10}
         max={100}
         defaultValue={10}
         onChange={onChangeSizePage}
-      />
-      <Search
-        placeholder="input search text"
-        defaultValue="developer soft skills"
-        onSearch={(value) => loadArticles(value)}
-        enterButton
       />
     </Container>
   );
