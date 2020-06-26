@@ -11,12 +11,10 @@ A aplicação foi desenvolvida com React.
 # Clone o repositório do projeto
 $ git clone https://github.com/adeiltonsousa/mettzer-search-articles
 
-
-
 ## STARTANDO O FRONT-END REACT
 
 # Vá para o diretório do APP
-$ cd app
+$ cd mettzer-search-articles
 
 # Agora instale todas as dependências
 $ yarn install
@@ -24,7 +22,7 @@ $ yarn install
 # Starte o projeto
 $ yarn start
 
-# O APP estará disponível em localhost na porta 3000
+# O APP estará disponível em localhost:3000
 
 ```
 
